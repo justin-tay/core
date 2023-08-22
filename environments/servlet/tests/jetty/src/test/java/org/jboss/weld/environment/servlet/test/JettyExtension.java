@@ -16,6 +16,7 @@
  */
 package org.jboss.weld.environment.servlet.test;
 
+import org.jboss.arquillian.container.jetty.embedded_12_ee10.WebAppContextProcessor;
 import org.jboss.arquillian.container.test.spi.client.deployment.ApplicationArchiveProcessor;
 import org.jboss.arquillian.core.spi.LoadableExtension;
 
@@ -28,6 +29,6 @@ public class JettyExtension implements LoadableExtension {
     @Override
     public void register(ExtensionBuilder builder) {
         builder.service(ApplicationArchiveProcessor.class, JettyArchiveProcessor.class);
+        builder.service(WebAppContextProcessor.class, CdiDecoratingListenerWebAppContextProcessor.class);
     }
-
 }

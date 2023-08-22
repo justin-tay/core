@@ -30,10 +30,11 @@ public final class JettyDeployments {
     }
 
     public static final Asset JETTY_ENV = new StringAsset(
-        "<Configure id=\"webAppCtx\" class=\"org.eclipse.jetty.webapp.WebAppContext\">" +
-            "<Set class=\"org.eclipse.jetty.util.resource.Resource\" name=\"defaultUseCaches\">false</Set>" +
-            "<New class=\"org.eclipse.jetty.plus.jndi.EnvEntry\">" +
-                "<Arg><Ref id=\"webAppCtx\"/></Arg>" +
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+        "<!DOCTYPE Configure PUBLIC \"-//Jetty//Configure//EN\" \"https://www.eclipse.org/jetty/configure_10_0.dtd\">" +
+        "<Configure id=\"webAppCtx\" class=\"org.eclipse.jetty.ee10.webapp.WebAppContext\">" +
+            "<New class=\"org.eclipse.jetty.ee10.plus.jndi.EnvEntry\">" +
+                "<Arg><Ref refid=\"webAppCtx\"/></Arg>" +
                 "<Arg>BeanManager</Arg>" +
                 "<Arg>" +
                     "<New class=\"javax.naming.Reference\">" +
@@ -44,7 +45,7 @@ public final class JettyDeployments {
                 "</Arg>" +
                 "<Arg type=\"boolean\">true</Arg>" +
             "</New>" +
-            "<New class=\"org.eclipse.jetty.plus.jndi.EnvEntry\">" +
+            "<New class=\"org.eclipse.jetty.ee10.plus.jndi.EnvEntry\">" +
                 "<Arg></Arg>" +
                 "<Arg>foo</Arg>" +
                 "<Arg type=\"java.lang.String\">bar</Arg>" +

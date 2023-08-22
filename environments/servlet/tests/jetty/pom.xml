@@ -3,7 +3,7 @@
     <parent>
         <artifactId>weld-servlet-parent</artifactId>
         <groupId>org.jboss.weld.servlet</groupId>
-        <version>5.0.1-SNAPSHOT</version>
+        <version>5.1.2-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -130,7 +130,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-jetty-embedded-11</artifactId>
+                    <artifactId>arquillian-jetty-embedded-12-ee10</artifactId>
                     <scope>test</scope>
                     <!-- We need to exclude otherwise this overrides the Junit 4 dep we have with version 5 -->
                     <exclusions>
@@ -155,41 +155,47 @@
                         </exclusion>
                     </exclusions>
                 </dependency>
+
                 <dependency>
-                    <groupId>org.eclipse.jetty.websocket</groupId>
-                    <artifactId>websocket-jetty-client</artifactId>
-                    <version>${jetty.version}</version>
+                    <groupId>org.eclipse.jetty.ee10.websocket</groupId>
+                    <artifactId>jetty-ee10-websocket-jakarta-client</artifactId>
+                    <scope>test</scope>
                 </dependency>
+
+                <dependency>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-cdi</artifactId>
+                    <scope>test</scope>
+                </dependency>                
 
                 <!-- plus and naming requires for using JNDI -->
                 <dependency>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-plus</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-plus</artifactId>
                     <scope>test</scope>
                 </dependency>
 
                 <dependency>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-jndi</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-jndi</artifactId>
                     <scope>test</scope>
                 </dependency>
 
                 <dependency>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-webapp</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-webapp</artifactId>
                     <scope>test</scope>
                 </dependency>
 
                 <dependency>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-deploy</artifactId>
-                    <version>${jetty.version}</version>
                     <scope>test</scope>
                 </dependency>
 
                 <dependency>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-annotations</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-annotations</artifactId>
                     <scope>test</scope>
                 </dependency>
 
@@ -211,6 +217,13 @@
                     <artifactId>jakarta.servlet.jsp-api</artifactId>
                     <scope>test</scope>
                 </dependency>
+                
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                    <version>1.7.36</version>
+                    <scope>test</scope>
+                </dependency>                
             </dependencies>
         </profile>
     </profiles>
